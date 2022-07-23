@@ -27,7 +27,8 @@ public class BookRoute extends RouteBuilder {
                 .apiProperty("api.title", "Spring Boot Camel Postgres Rest API.")
                 .apiProperty("api.version", "1.0")
                 .apiProperty("cors", "true")
-                .apiContextRouteId("doc-api")
+//                .apiContextRouteId("doc-api")
+
                 .port(env.getProperty("server.port", "8080"))
                 .bindingMode(RestBindingMode.json);
 
@@ -41,20 +42,26 @@ public class BookRoute extends RouteBuilder {
         rest("/book")
                 .consumes(MediaType.APPLICATION_JSON_VALUE)
                 .produces(MediaType.APPLICATION_JSON_VALUE)
-                .get("/{name}").route()
-                .to("{{route.findBookByName}}")
-                .endRest()
-                .get("/").route()
-                .to("{{route.findAllBooks}}")
-                .endRest()
-                .post("/").route()
-                .marshal().json()
-                .unmarshal(getJacksonDataFormat(Book.class))
-                .to("{{route.saveBook}}")
-                .endRest()
-                .delete("/{bookId}").route()
-                .to("{{route.removeBook}}")
-                .end();
+//                .get("/{name}").route()
+//                .to("{{route.findBookByName}}")
+//                .endRest()
+//                .get("/").route()
+//                .to("{{route.findAllBooks}}")
+//                .endRest()
+//                .post("/").route()
+//                .marshal().json()
+//                .unmarshal(getJacksonDataFormat(Book.class))
+//                .to("{{route.saveBook}}")
+//                .endRest()
+//                .delete("/{bookId}").route()
+//                .to("{{route.removeBook}}")
+//                .end();
+                .get("/{name}").to("{{route.findBookByName}}")
+                .get("/").to("{{route.findAllBooks}}")
+                .post("/").to("{{route.saveBook}}");
+
+        rest("/book")
+                .delete("/{bookId}").to("{{route.removeBook}}");
 
         from("{{route.findBookByName}}")
                 .log("Received header : ${header.name}")
@@ -65,6 +72,9 @@ public class BookRoute extends RouteBuilder {
 
 
         from("{{route.saveBook}}")
+                .marshal()
+                .json()
+                .unmarshal(getJacksonDataFormat(Book.class))
                 .log("Received Body ${body}")
                 .bean(BookService.class, "addBook(${body})");
 

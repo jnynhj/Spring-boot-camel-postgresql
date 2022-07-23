@@ -9,8 +9,9 @@
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
-		<spring-boot-version>2.3.4.RELEASE</spring-boot-version>
-		<camel.version>3.3.0</camel.version>
+		<spring-boot-version>2.7.1</spring-boot-version>
+		<!-- working  camel.version>3.9.0</camel.version -->
+		<camel.version>3.9.0</camel.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<maven.compiler.target>11</maven.compiler.target>
