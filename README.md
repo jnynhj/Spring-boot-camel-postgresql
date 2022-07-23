@@ -6,7 +6,10 @@ Original GIT: https://github.com/naskavinda/Spring-boot-camel-postgresql
 
 Note:
     Check   http://localhost:8080/rest/hello
-            http://localhost:8080/rest/api-doc
     - camel-spring-boot-dependencies 3.9.0 works
     - camel-spring-boot-dependencies 3.10.0 to 3.18.0 not working, not sure why?
         Whitelabel Error Page
+
+    Check        http://localhost:8080/rest/api-doc
+    - camel-spring-boot-dependencies 3.3.0 works
+    - camel-spring-boot-dependencies 3.9.0 to 3.18.0 not working, not sure why?
